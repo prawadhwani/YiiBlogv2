@@ -39,3 +39,80 @@ Stack trace:
 REQUEST_URI=/blog2/index.php?r=post/create
 HTTP_REFERER=http://localhost/blog2/index.php?r=post/create
 ---
+2014/09/04 11:39:58 [error] [exception.CException] exception 'CException' with message 'Tag and its behaviors do not have a method or closure named "updateFrequency".' in /usr/share/nginx/html/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(227): CComponent->__call('updateFrequency', Array)
+#1 /usr/share/nginx/html/blog2/protected/models/Post.php(168): CActiveRecord->__call('updateFrequency', Array)
+#2 /usr/share/nginx/html/blog2/protected/models/Post.php(168): Tag->updateFrequency(NULL, 'squat, legs')
+#3 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(1097): Post->afterSave()
+#4 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#5 /usr/share/nginx/html/blog2/protected/controllers/PostController.php(71): CActiveRecord->save()
+#6 /usr/share/nginx/html/yii/framework/web/actions/CInlineAction.php(49): PostController->actionCreate()
+#7 /usr/share/nginx/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 /usr/share/nginx/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /usr/share/nginx/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 /usr/share/nginx/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 /usr/share/nginx/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#14 /usr/share/nginx/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#16 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('post/create')
+#17 /usr/share/nginx/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /usr/share/nginx/html/blog2/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/blog2/index.php?r=post/create
+HTTP_REFERER=http://localhost/blog2/index.php?r=post/create
+---
+2014/09/04 11:41:23 [error] [exception.CException] exception 'CException' with message 'Tag and its behaviors do not have a method or closure named "addTags".' in /usr/share/nginx/html/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(227): CComponent->__call('addTags', Array)
+#1 /usr/share/nginx/html/blog2/protected/models/Tag.php(115): CActiveRecord->__call('addTags', Array)
+#2 /usr/share/nginx/html/blog2/protected/models/Tag.php(115): Tag->addTags(Array)
+#3 /usr/share/nginx/html/blog2/protected/models/Post.php(168): Tag->updateFrequency(NULL, 'squat, legs')
+#4 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(1097): Post->afterSave()
+#5 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#6 /usr/share/nginx/html/blog2/protected/controllers/PostController.php(71): CActiveRecord->save()
+#7 /usr/share/nginx/html/yii/framework/web/actions/CInlineAction.php(49): PostController->actionCreate()
+#8 /usr/share/nginx/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /usr/share/nginx/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /usr/share/nginx/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /usr/share/nginx/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /usr/share/nginx/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /usr/share/nginx/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#17 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('post/create')
+#18 /usr/share/nginx/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /usr/share/nginx/html/blog2/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/blog2/index.php?r=post/create
+HTTP_REFERER=http://localhost/blog2/index.php?r=post/create
+---
+2014/09/04 11:41:41 [error] [exception.CException] exception 'CException' with message 'Tag and its behaviors do not have a method or closure named "removeTags".' in /usr/share/nginx/html/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(227): CComponent->__call('removeTags', Array)
+#1 /usr/share/nginx/html/blog2/protected/models/Tag.php(116): CActiveRecord->__call('removeTags', Array)
+#2 /usr/share/nginx/html/blog2/protected/models/Tag.php(116): Tag->removeTags(Array)
+#3 /usr/share/nginx/html/blog2/protected/models/Post.php(168): Tag->updateFrequency(NULL, 'squat, legs')
+#4 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(1097): Post->afterSave()
+#5 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#6 /usr/share/nginx/html/blog2/protected/controllers/PostController.php(71): CActiveRecord->save()
+#7 /usr/share/nginx/html/yii/framework/web/actions/CInlineAction.php(49): PostController->actionCreate()
+#8 /usr/share/nginx/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /usr/share/nginx/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /usr/share/nginx/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /usr/share/nginx/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /usr/share/nginx/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /usr/share/nginx/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#17 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('post/create')
+#18 /usr/share/nginx/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /usr/share/nginx/html/blog2/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/blog2/index.php?r=post/create
+HTTP_REFERER=http://localhost/blog2/index.php?r=post/create
+---

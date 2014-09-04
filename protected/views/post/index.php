@@ -1,6 +1,7 @@
 <?php
 /* @var $this PostController */
-/* @var $dataProvider CActiveDataProvider */
+/* @var $dataProvider CActiveDataProvider
+ * todo added the tag thing, removed posts part */
 
 $this->breadcrumbs=array(
 	'Posts',
@@ -20,11 +21,4 @@ $this->menu=array(
     'dataProvider'=>$dataProvider,
     'itemView'=>'_view',
     'template'=>"{items}\n{pager}",
-)); ?>
-
-<h1>Posts</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
 )); ?>

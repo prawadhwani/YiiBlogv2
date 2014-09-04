@@ -130,7 +130,7 @@ class Post extends CActiveRecord
 		return parent::model($className);
 	}
 
-    //todo all the new additions to this file go below
+    //-----todo all the new additions to this file go below
 
     public function normalizeTags($attribute,$params)
     {
@@ -174,6 +174,13 @@ class Post extends CActiveRecord
     {
         parent::afterFind();
         $this->_oldTags=$this->tags;
+    }
+
+    protected function afterDelete()
+    {
+        parent::afterDelete();
+        Comment::model()->deleteAll('post_id='.$this->id);
+        Tag::model()->updateFrequency($this->tags, '');
     }
 
 }

@@ -31,19 +31,19 @@ class Comment extends CActiveRecord
 
 	/**
 	 * @return array validation rules for model attributes.
+     * todo they have been modified
 	 */
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('content, status, author, email, post_id', 'required'),
-			array('status, create_time, post_id', 'numerical', 'integerOnly'=>true),
-			array('author, email, url', 'length', 'max'=>128),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, content, status, create_time, author, email, url, post_id', 'safe', 'on'=>'search'),
-		);
+        return array(
+            array('content, author, email', 'required'),
+            array('author, email, url', 'length', 'max'=>128),
+            array('email','email'),
+            array('url','url'),
+            array('status','safe'),
+        );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Comment extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'post' => array(self::BELONGS_TO, 'TblPost', 'post_id'),
+			'post' => array(self::BELONGS_TO, 'Post', 'post_id'),
 		);
 	}
 
@@ -117,4 +117,67 @@ class Comment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    //todo changes made go below ----------------------->
+
+    protected function beforeSave()
+    {
+        if(parent::beforeSave())
+        {
+            if($this->isNewRecord)
+                $this->create_time=time();
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function approve()
+    {
+        $this->status=Comment::STATUS_APPROVED;
+        $this->update(array('status'));
+    }
+
+    /**
+     * @param Post the post that this comment belongs to. If null, the method
+     * will query for the post.
+     * @return string the permalink URL for this comment
+     * todo brought this here!
+     */
+    public function getUrl($post=null)
+    {
+        if($post===null)
+            $post=$this->post;
+        return $post->url.'#c'.$this->id;
+    }
+
+    /**
+     * @return string the hyperlink display for the current comment's author
+     * todo here comes another
+     */
+    public function getAuthorLink()
+    {
+        if(!empty($this->url))
+            return CHtml::link(CHtml::encode($this->author),$this->url);
+        else
+            return CHtml::encode($this->author);
+    }
+
+
+    /**
+     * @return integer the number of comments that are pending approval
+     */
+    public function getPendingCommentCount()
+    {
+        return $this->count('status='.self::STATUS_PENDING);
+    }
+
+    public function findRecentComments($limit=10)
+    {
+        return $this->with('post')->findAll(array(
+            'condition'=>'t.status='.self::STATUS_APPROVED,
+            'order'=>'t.create_time DESC',
+            'limit'=>$limit,
+        ));
+    }
 }

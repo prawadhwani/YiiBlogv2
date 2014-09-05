@@ -48,7 +48,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tblPosts' => array(self::HAS_MANY, 'TblPost', 'author_id'),
+			'posts' => array(self::HAS_MANY, 'Post', 'author_id'),
 		);
 	}
 

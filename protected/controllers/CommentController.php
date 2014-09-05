@@ -70,6 +70,7 @@ class CommentController extends Controller
 		if(isset($_POST['Comment']))
 		{
 			$model->attributes=$_POST['Comment'];
+            $model->status = Comment::STATUS_PENDING;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -94,6 +95,7 @@ class CommentController extends Controller
 		if(isset($_POST['Comment']))
 		{
 			$model->attributes=$_POST['Comment'];
+            $model->status = Comment::STATUS_PENDING;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -119,14 +121,21 @@ class CommentController extends Controller
 
 	/**
 	 * Lists all models.
+     * todo changes have been made below, again!
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Comment');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+    public function actionIndex()
+    {
+        $dataProvider=new CActiveDataProvider('Comment', array(
+            'criteria'=>array(
+                'with'=>'post',
+                'order'=>'t.status, t.create_time DESC',
+            ),
+        ));
+
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
 
 	/**
 	 * Manages all models.
@@ -149,14 +158,19 @@ class CommentController extends Controller
 	 * @param integer $id the ID of the model to be loaded
 	 * @return Comment the loaded model
 	 * @throws CHttpException
+     * todo changed it from the demo code
 	 */
-	public function loadModel($id)
-	{
-		$model=Comment::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
+    public function loadModel()
+    {
+        if($this->_model===null)
+        {
+            if(isset($_GET['id']))
+                $this->_model=Comment::model()->findbyPk($_GET['id']);
+            if($this->_model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+        }
+        return $this->_model;
+    }
 
 	/**
 	 * Performs the AJAX validation.
@@ -170,4 +184,18 @@ class CommentController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    //todo edits are made below ------->
+
+    public function actionApprove()
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $comment=$this->loadModel();
+            $comment->approve();
+            $this->redirect(array('index'));
+        }
+        else
+            throw new CHttpException(400,'Invalid request...');
+    }
 }

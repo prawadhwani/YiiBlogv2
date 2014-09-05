@@ -1,6 +1,7 @@
 <?php
 /* @var $this CommentController */
 /* @var $data Comment */
+//todo edited
 ?>
 
 <div class="view">
@@ -13,24 +14,12 @@
 	<?php echo CHtml::encode($data->content); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
-	<?php echo CHtml::encode($data->create_time); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('author')); ?>:</b>
 	<?php echo CHtml::encode($data->author); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
 	<?php echo CHtml::encode($data->email); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('url')); ?>:</b>
-	<?php echo CHtml::encode($data->url); ?>
 	<br />
 
 	<?php /*
